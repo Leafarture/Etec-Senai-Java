@@ -1,38 +1,41 @@
 package com.etec.escola.Controller;
 
 
-import com.etec.escola.Models.Aluno;
-import com.etec.escola.Service.AlunoService;
+import com.etec.escola.Models.Professor;
+import com.etec.escola.Service.ProfessorService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/aluno")
-public class AlunoController {
+@RequestMapping("/professor")
+public class ProfessorController {
 
-    private final AlunoService alunoService;
-    public AlunoController(AlunoService alunoService) {
-        this.alunoService = alunoService;
+    private final ProfessorService professorService;
+
+    public ProfessorController(ProfessorService professorService) {
+        this.professorService = professorService;
     }
+
 
     @GetMapping
-    public List<Aluno> listaDeAlunos(){
-        return alunoService.buscarAlunos();
+    public List<Professor> listaDeProfessor(){
+        return professorService.buscarProfessor();
     }
 
+
     @PostMapping
-    public Aluno salvarNovoAluno(@RequestBody Aluno dadosAluno){
-        return alunoService.salvarAluno(dadosAluno);
+    public Professor salvarNovoProfessor(@RequestBody Professor dadosProfessor){
+        return professorService.salvarProfessor(dadosProfessor);
     }
 
     @GetMapping("/{id}")
-    public Aluno buscarAlunoId(@PathVariable Long id){
-        return alunoService.buscarAlunoId(id);
+    public Professor buscarProfessorId(@PathVariable Long id){
+        return professorService.buscarProfessorId(id);
     }
 
     @DeleteMapping("/{id}")
-    public void excluirAluno(@PathVariable Long id){
-        alunoService.deletarAluno(id);
+    public void excluirProfessor(@PathVariable Long id){
+        professorService.deletarProfessor(id);
     }
 }
