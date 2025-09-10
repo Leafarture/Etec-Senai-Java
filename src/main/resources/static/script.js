@@ -1,22 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('http://localhost:8080/aluno')
-    .then(response => response.json())
-    .then(data => {
-      const tbody = document.getElementById('aluno-tbody');
-      data.forEach(aluno => {
-        const tr = document.createElement('tr');
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Alunos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Alunos Cadastrados</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+        </tr>
+      </thead>
+      <tbody id="aluno-tbody">
+        <!-- Os dados dos alunos vão aparecer aqui -->
+      </tbody>
+    </table>
+  </div>
 
-        tr.innerHTML = `
-          <td>${aluno.nome}</td>
-          <td>${aluno.email}</td>
-          <td>${aluno.telefone}</td>
-        `;
-
-        tbody.appendChild(tr);
-      });
-    })
-    .catch(error => {
-      console.error('Erro ao buscar alunos:', error);
-      alert('Erro ao carregar a lista de alunos.');
-    });
-});
+  <script src="script.js"></script>
+</body>
+</html>
